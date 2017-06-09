@@ -1,14 +1,25 @@
+// Erin K Kennon
 // TempConv.cpp : main project file.
 
 #include "stdafx.h"
 #include <iostream>
-#include <string>
 
 using namespace std;
 
+void showDegreesK(double celsius) {
+	double kelvin = celsius + 273.15;
+	if (kelvin < 0) {
+		cout << "\n\t" << celsius << " is an invalid temperature.";
+	}
+	else {
+		cout << "\n\tThis is also a temperature of: " << kelvin << " K" << endl;
+	}
+	
+}
+
 int main(int argc, wchar_t argv[])
 {
-	cout << "Welcome to the Temperature Converter!\n";
+	cout << "Welcome to the Temperature Converter!" << endl;
 
 	char viewKelvin;
 	while (viewKelvin != 'Y' && viewKelvin != 'N') {
@@ -21,37 +32,33 @@ int main(int argc, wchar_t argv[])
 	cin >> type;
 
 	while (type == 1 || type == 2) {
-		int fromTemp;
-		cout << "Enter your temperature: ";
-		cin >> fromTemp;
-
-		string fromName;
-		string toName;
-		int toTemp;
+		double celsius;
+		double fahrenheit;
 		switch (type) {
 		case 1:
-			fromName = "Fahrenheit";
-			toName = "Celsius";
-			toTemp = 5 / 9 * (fromTemp - 32);
+			cout << "Enter your Fahrenheit temperature: ";
+			cin >> fahrenheit;
+			celsius = ((fahrenheit - 32) * 5) / 9;
+			cout << "A temperature of " << fahrenheit << " Fahrenheit converted to Celsius = " << celsius << " C.";
 			break;
 		case 2:
-			fromName = "Celsius";
-			toName = "Fahrenheit";
-			toTemp = (9 / 5 * fromTemp) + 32;
+			cout << "Enter your Celsius temperature: ";
+			cin >> celsius;
+			fahrenheit = celsius * 9 / 5 + 32;
+			cout << "A temperature of " << celsius << " Celsius converted to Fahrenheit = " << fahrenheit << " F.";
 		}
 
-		cout << "A temperature of " << fromTemp << " " << fromName << " converted to " << toName << " = " << toTemp << " degrees " << toName;
-
 		if (viewKelvin == 'Y') {
-			cout << viewKelvin;
+			showDegreesK(celsius);
 		}
 
 		cout << "\nSelect conversion type (1 = F to C, 2 = C to F, 0 = end): ";
 		cin >> type;
 	}
 	
-	cout << "Thank you for using the temperature converter!";
+	cout << "\nThank you for using the temperature converter!" << endl;
 	system("pause");
 
     return 0;
 }
+
